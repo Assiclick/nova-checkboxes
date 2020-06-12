@@ -11,7 +11,6 @@ class Checkboxes extends Field
 {
     public $component = 'nova-checkboxes';
 
-
     public function options($options)
     {
         return $this->withMeta([
@@ -32,6 +31,20 @@ class Checkboxes extends Field
     {
         return $this->withMeta([
             'save_unchecked' => true
+        ]);
+    }
+
+    public function hideCheckedValuesOnIndex()
+    {
+        return $this->withMeta([
+            'hide_checked_on_index' => true
+        ]);
+    }
+
+    public function hideCheckedValuesOnDetail()
+    {
+        return $this->withMeta([
+            'hide_checked_on_detail' => true
         ]);
     }
 
@@ -70,13 +83,13 @@ class Checkboxes extends Field
             $value = explode(',', $value);
         } elseif (! $value) {
             $value = [];
-        } 
+        }
 
         if (Arr::isAssoc($value)) {
             $value = $this->onlyChecked($value);
         }
 
-        return json_encode((object)$this->withUnchecked($value));
+        return json_encode((object) $this->withUnchecked($value));
     }
 
     protected function fillAttributeFromRequest(
@@ -108,7 +121,7 @@ class Checkboxes extends Field
         );
     }
 
-	protected function shouldSaveUnchecked()
+    protected function shouldSaveUnchecked()
     {
         return (
             array_key_exists('save_unchecked', $this->meta)
@@ -116,7 +129,7 @@ class Checkboxes extends Field
         );
     }
 
-	protected function withUnchecked($data)
+    protected function withUnchecked($data)
     {
         return collect($this->meta['options'])
             ->mapWithKeys(function ($option) use ($data) {
@@ -127,7 +140,7 @@ class Checkboxes extends Field
             ->all();
     }
 
-	protected function onlyChecked($data)
+    protected function onlyChecked($data)
     {
         return collect($data)
             ->filter(function ($isChecked) {

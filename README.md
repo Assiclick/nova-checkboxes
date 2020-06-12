@@ -171,6 +171,34 @@ Checkboxes::make('Hobbies')
 ```
 Note that this does NOT require you to save all unchecked values also using `saveUncheckedValues`.  You can use any of the approaches to saving data along with this option.
 
+#### hideCheckedValuesOnIndex
+
+By default, only the checked options will display on the index.  If you wish to display only the options for this field along with their /unchecked status you can add this option:
+
+```php
+Checkboxes::make('Hobbies')
+    ->options([
+        'sailing' => 'Sailing',
+        'rock_climbing' => 'Rock Climbing',
+        'archery' => 'Archery'
+    ])
+    ->hideCheckedValuesOnIndex()
+```
+
+#### hideCheckedValuesOnDetail
+
+By default, only the checked options will display on detail screens.  If you wish to display only the options for this field along with their unchecked status you can add this option:
+
+```php
+Checkboxes::make('Hobbies')
+    ->options([
+        'sailing' => 'Sailing',
+        'rock_climbing' => 'Rock Climbing',
+        'archery' => 'Archery'
+    ])
+    ->hideCheckedValuesOnDetail()
+```
+
 #### Display checkbox in columns
 
 By default, only checked values are displayed in one column, but if you have enough space you can split them in many using the `columns` method on the field.

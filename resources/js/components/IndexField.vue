@@ -20,6 +20,9 @@
 
         computed: {
             optionList() {
+                if (this.field.hide_checked_on_index) {
+                    return this.getUnCheckedOptions();
+                }
                 if (this.field.display_unchecked_on_index) {
                     return this.getAllOptions();
                 }

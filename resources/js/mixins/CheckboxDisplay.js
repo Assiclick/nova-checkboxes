@@ -41,6 +41,19 @@ export default {
                         'label': option.label
                     }
                 });
+        },
+        getUnCheckedOptions(){
+            return this.field.options
+                .filter(option => {
+                    return ! this.value[option.value];
+                })
+                .map(option => {
+                    return {
+                        'status': false,
+                        'key': option.value,
+                        'label': option.label
+                    }
+                });
         }
     },
 
